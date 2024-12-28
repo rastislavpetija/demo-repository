@@ -3,7 +3,7 @@ name: Docker Build and Compose
 on:
   push:
     branches:
-    - main
+      - main
 
 jobs:
   build_and_compose:
@@ -11,10 +11,13 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: Build Docker image
-      run: docker build -t myimage .
-    - name: Start Docker services
+
+    - name: Build Docker Image
       run: |
-        docker-compose up -d
+        docker build -t myimage:latest -f Dockerfile . 
+
+    - name: Run Docker Compose
+      run: |
+        docker-compose up -d 
         echo "app deployed"
         curl localhost:5003
