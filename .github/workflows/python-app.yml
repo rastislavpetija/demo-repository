@@ -18,6 +18,7 @@ jobs:
 
     - name: Run Docker Compose
       run: |
+        docker-compose down
         docker-compose up -d 
         echo "app deployed"
         curl localhost:5003
